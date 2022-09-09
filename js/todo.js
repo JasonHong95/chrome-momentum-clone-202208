@@ -4,7 +4,7 @@ const toDoList = document.getElementById("todo-list");
 
 const TODOS_KEY = "ToDos";
 
-const toDos = [];
+let toDos = []; // 프로그램이 시작할 때 빈값으로 시작하는 대신 const를 -> let으로 변경해서 업데이트 가능하도록 만든다.
 
 function saveToDos() {
    localStorage.setItem(TODOS_KEY, JSON.stringify(toDos)); // Javascript의 어떤 코드건 상관없이 string으로 만들어준다
@@ -38,13 +38,9 @@ function handleToDoSubmit(event) {
 
 toDoForm.addEventListener("submit", handleToDoSubmit);
 
-/*function sayHello(item) {
-   console.log("This is turn of", item);
-}*/
-
 const savedToDos = localStorage.getItem(TODOS_KEY);
 if (savedToDos !== null) {
    const parsedToDos = JSON.parse(savedToDos);
-   //    parsedToDos.forEach(sayHello);
-   parsedToDos.forEach((item) => console.log("This is turn of", item)); // funtion을 작성할때 더 짧게 쓰는 방법 = arrow function
+   toDos = parsedToDos; // localstorage에 toDo값이 들어있으면 parsedToDos를 넣어서 전에 있던 toDo들을 복원
+   parsedToDos.forEach(paintToDo);
 }
