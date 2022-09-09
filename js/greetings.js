@@ -9,10 +9,7 @@ function onLoginSubmit(event) {
    event.preventDefault();
    loginForm.classList.add(HIDDEN_CLASSNAME);
    const username = loginInput.value;
-   localStorage.setItem(USERNAME_KEY, username); // Local Storage를 이용해서 값을 저장
-   //    greeting.innerText = `Hello ${username}`;
-   //    greeting.classList.remove(HIDDEN_CLASSNAME);
-   //    함수를 만들어서 중복코드 생략
+   localStorage.setItem(USERNAME_KEY, username);
    paintGreetings(username);
 }
 
@@ -24,14 +21,8 @@ function paintGreetings(username) {
 const savedUsername = localStorage.getItem(USERNAME_KEY);
 
 if (savedUsername === null) {
-   // show the form
    loginForm.classList.remove(HIDDEN_CLASSNAME);
    loginForm.addEventListener("submit", onLoginSubmit);
-   // form에 hidden class 기본값, Local Storage에 값이 없으면 HIDDEN CLASS를 제거한 후 EventListener 실행
 } else {
-   // show the greeting
-   //    greeting.innerText = `Hello ${savedUsername}`;
-   //    greeting.classList.remove(HIDDEN_CLASSNAME);
-   //    함수를 만들어서 중복코드 생략
    paintGreetings(savedUsername);
 }
