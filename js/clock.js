@@ -2,8 +2,11 @@ const clock = document.querySelector("h2#clock");
 
 function getClock() {
    const date = new Date();
-   //    console.log(`${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`);
-   clock.innerText = `${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`;
+   const hours = String(date.getHours()).padStart(2, "0");
+   const minutes = String(date.getMinutes()).padStart(2, "0");
+   const seconds = String(date.getSeconds()).padStart(2, "0");
+   //date가 num이기 때문에 String으로 변환해서 .padStart로 "0" 텍스트(string) 추가
+   clock.innerText = `${hours}:${minutes}:${seconds}`;
 }
-getClock(); //사이트가 로딩되는 즉시 시간을 바로 보여주고 그 후 1초마다 계속 호출
+getClock();
 setInterval(getClock, 1000);
