@@ -4,21 +4,23 @@ const toDoList = document.getElementById("todo-list");
 
 const TODOS_KEY = "ToDos";
 
-let toDos = []; // 프로그램이 시작할 때 빈값으로 시작하는 대신 const를 -> let으로 변경해서 업데이트 가능하도록 만든다.
+let toDos = [];
 
 function saveToDos() {
-   localStorage.setItem(TODOS_KEY, JSON.stringify(toDos)); // Javascript의 어떤 코드건 상관없이 string으로 만들어준다
+   localStorage.setItem(TODOS_KEY, JSON.stringify(toDos));
 }
 
 function deleteToDo(event) {
    const li = event.target.parentElement;
+   console.log(li.id);
    li.remove();
 }
 
 function paintToDo(newTodo) {
    const li = document.createElement("li");
+   li.id = newTodo.id;
    const span = document.createElement("span");
-   span.innerText = newTodo;
+   span.innerText = newTodo.text;
    const button = document.createElement("button");
    button.innerText = "✖︎";
    button.addEventListener("click", deleteToDo);
@@ -31,8 +33,12 @@ function handleToDoSubmit(event) {
    event.preventDefault();
    const newTodo = toDoInput.value;
    toDoInput.value = "";
-   toDos.push(newTodo);
-   paintToDo(newTodo);
+   const newTodoObj = {
+      text: newTodo,
+      id: Date.now(),
+   };
+   toDos.push(newTodoObj);
+   paintToDo(newTodoObj);
    saveToDos();
 }
 
@@ -41,6 +47,6 @@ toDoForm.addEventListener("submit", handleToDoSubmit);
 const savedToDos = localStorage.getItem(TODOS_KEY);
 if (savedToDos !== null) {
    const parsedToDos = JSON.parse(savedToDos);
-   toDos = parsedToDos; // localstorage에 toDo값이 들어있으면 parsedToDos를 넣어서 전에 있던 toDo들을 복원
+   toDos = parsedToDos;
    parsedToDos.forEach(paintToDo);
 }
