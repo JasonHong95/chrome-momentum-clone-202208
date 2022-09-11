@@ -30,11 +30,20 @@ h1#greeting {
    font-weight: 600;
    margin-bottom: 50px;
 }
-/* .bottom-box {
+#login-form {
+   margin: 20px 0;
    display: flex;
-   flex-direction: column;
-   align-items: center;
-} */
+}
+#login-form input {
+   width: 550px;
+   height: 40px;
+}
+#login-form input,
+#login-form button {
+   border: none;
+   background-color: rgba(0, 0, 0, 0.5);
+   color: white;
+}
 #todo-form {
    display: flex;
    flex-direction: column;
