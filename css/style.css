@@ -32,17 +32,17 @@ h1#greeting {
 }
 #login-form {
    margin: 20px 0;
-   display: flex;
+   /* display: flex; */
 }
 #login-form input {
    width: 550px;
-   height: 40px;
 }
 #login-form input,
 #login-form button {
    border: none;
    background-color: rgba(0, 0, 0, 0.5);
    color: white;
+   padding: 20px 20px;
 }
 #todo-form {
    display: flex;
